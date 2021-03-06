@@ -70,7 +70,6 @@ int main(int argc, char *argv[])
     }
     qDebug()<<w.result1<<w.result2;
 }
-;
 ```
 ```
 查看线程id的方法
