@@ -34,6 +34,7 @@ void my_qth::f1()
         qDebug()<<1;
     }
     result1=tmp;
+    f1_end_flag=1;
     qDebug()<<"f1_end##################################################";
 }
 ```
@@ -46,8 +47,30 @@ void my_qth::star1()
 ```
 ③main使用
 ```
-my_qth w;
-w.star_f1l();
+int main(int argc, char *argv[])
+{
+    my_qth w;
+    qDebug()<<"main_id___###"<<QThread::currentThreadId();
+    qDebug()<<"i am main thread";
+    w.star_all();
+    while(1)
+    {
+        if(w.f1_end_flag==1)
+        {
+            qDebug()<<"w.result1"<<w.result1;
+        }
+        if(w.f2_end_flag==1)
+        {
+            qDebug()<<"w.result2"<<w.result2;
+        }
+        if((w.f1_end_flag==1)&&(w.f2_end_flag==1))
+        {
+            break;
+        }
+    }
+    qDebug()<<w.result1<<w.result2;
+}
+;
 ```
 ```
 查看线程id的方法
